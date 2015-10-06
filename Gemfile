@@ -45,3 +45,6 @@ group :development do
   gem 'spring'
 end
 
+gem 'bootstrap-sass'
+gem 'autoprefixer-rails'
+gem 'font-awesome-sass'
