@@ -9,6 +9,7 @@
 </head>
 <body>
 
+<% if current_user %>
 <nav id="myNavmenu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
 
 <ul class="nav navmenu-nav">
@@ -18,6 +19,7 @@
 
   <li class="active"><a href="#"><i class="fa fa-cog"></i>Settings</a></li>
 
+  <li class="active"><%= link_to 'sign_out', method: :delete do %><i class="fa fa-cog"></i>Log out<% end %></li>
 </ul>
 
 </nav>
@@ -30,11 +32,11 @@
   </button>
 
 </div>
-
+<% else %>
 <a href="#" class="navbar-brand">
   <%= image_tag "logo_white.png", alt: "Tindurr Logo", class: "logo-brand" %>
 </a>
-
+<% end %>
 <%= yield %>
 
 </body>
