@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   # find user by sessionid if one exists and return
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    rescue ActiveRecord::RecordNotFound
   end
 
   def require_login
