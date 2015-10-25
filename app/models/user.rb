@@ -33,6 +33,26 @@ class User < ActiveRecord::Base
       )
   end
 
+  #Friendship Methods
+  def request_match(other_user)
+    self.friendships.create(friend: other_user)
+  end
+
+  def accept_match(other_user)
+    self.friendships.where(friend: other_user).first.update_attribute(:state, "active")
+  end
+
+  def remove_match(other_user)
+    inverse_friendship = inverse_friendships.where(user_id: other_user).first
+
+    if inverse_friendship
+      self.inverse_friendships.where(user_id: other_user).first.destroy
+    else
+      self.friendships.where(friend_id: other_user).first.destroy
+    end
+
+  end
+
   private
   def self.process_uri(uri)
     avatar_url = URI.parse(uri)
